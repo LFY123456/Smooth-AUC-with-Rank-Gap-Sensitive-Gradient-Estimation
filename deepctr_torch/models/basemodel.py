@@ -144,9 +144,9 @@ class BaseModel(nn.Module):
         self.lr = lr
         self.device = device
         self.gpus = gpus
-        self.sal = SmoothAUCLoss()
+        # self.sal = SmoothAUCLoss()
         self.sall = SmoothAUCLossLambda()
-        self.bpr = BPR()
+        # self.bpr = BPR()
         if gpus and str(self.gpus[0]) not in self.device:
             raise ValueError(
                 "`gpus[0]` should be the same gpu with `device`")
@@ -888,12 +888,12 @@ class BaseModel(nn.Module):
                 loss_func = F.mse_loss
             elif loss == "mae":
                 loss_func = F.l1_loss
-            elif loss == "smooth_auc_loss":
-                loss_func = self.sal
+            # elif loss == "smooth_auc_loss":
+            #     loss_func = self.sal
             elif loss == "smooth_auc_loss_lambda":
                 loss_func = self.sall
-            elif loss == "bpr":
-                loss_func = self.bpr
+            # elif loss == "bpr":
+            #     loss_func = self.bpr
             else:
                 raise NotImplementedError
         else:
